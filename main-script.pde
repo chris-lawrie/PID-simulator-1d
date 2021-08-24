@@ -47,11 +47,14 @@ void draw() {
   
 // PID control for follow ball
   err = mouseY - actual;
-  cum_err += err; 
-  delta_err = err - err_last; 
+  cum_err += err;
+  delta_err = err - err_last;
   err_last = err;
   actual = (kp)*err + (ki)*cum_err + (kd)*delta_err; 
   
+  println(mouseY);
+  println(err);
+  println("-----");
   
 // Actually draw things now  
   background(0); 
@@ -69,6 +72,8 @@ void draw() {
   
   
  // code to display two sets of tracer dots 
+ 
+  
  for (int i = 0; i < points_lead.size()-1; i++){
     Point p = points_lead.get(i); 
     p.display(); 
@@ -76,13 +81,13 @@ void draw() {
     if(p.is_dead() == true) points_lead.remove(i); 
   }
   
-  for (int i = 0; i < points_follow.size()-1; i++){
+     for (int i = 0; i < points_follow.size()-1; i++){
     Point p = points_follow.get(i); 
     p.display(); 
     p.move();
     if(p.is_dead() == true) points_follow.remove(i); 
   }
-  
+
   
   // Print some text
   fill(255);
@@ -105,6 +110,5 @@ void keyPressed() {
   if(key == 'u') ki -= 0.05;
   if(key == 'd') kd += 0.05;
   if(key == 's') kd -= 0.05;
-  if(key == 'r') actual = 0; 
 }
   
