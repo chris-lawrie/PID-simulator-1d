@@ -5,7 +5,7 @@ float kd = 0.0;
 
 // Initialise other variables used in code
 float err = 0; 
-float actual = 0;
+float actual = width/2;
 float cum_err = 0; 
 float err_last = 0; 
 float delta_err = 0; 
@@ -50,7 +50,7 @@ void draw() {
   cum_err += err;
   delta_err = err - err_last;
   err_last = err;
-  actual = (kp)*err + (ki)*cum_err + (kd)*delta_err; 
+  actual = (kp)*err + (ki)*cum_err + (kd)*delta_err + height/2; 
   
   println(mouseY);
   println(err);
@@ -110,5 +110,6 @@ void keyPressed() {
   if(key == 'u') ki -= 0.05;
   if(key == 'd') kd += 0.05;
   if(key == 's') kd -= 0.05;
+  if(key == 'r') actual = 0; 
 }
   
